@@ -1,0 +1,6 @@
+<properties>
+
+    <property id="ShowStandardTime" type="boolean">false</property>
+    <property id="BeatsSymbol" type="number">0</property>
+
+</properties>

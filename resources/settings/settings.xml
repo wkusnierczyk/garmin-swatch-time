@@ -1,0 +1,14 @@
+<settings>
+
+    <setting propertyKey="@Properties.ShowStandardTime" title="@Strings.ShowStandardTimeTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.BeatsSymbol" title="@Strings.BeatsSymbolTitle">
+        <settingConfig type="list">
+            <listEntry value="0">@Strings.BeatsSymbolOptionAt</listEntry>
+            <listEntry value="1">@Strings.BeatsSymbolOptionDot</listEntry>
+        </settingConfig>
+    </setting>
+
+</settings>
