@@ -6,6 +6,8 @@ A minimalist, elegant, typography-focused Garmin Connect IQ watch face that disp
 ![Swatch time](resources/graphics/swatch-time-dot-standard-time.png)
 ![Swatch time](resources/graphics/swatch-time-at.png)
 
+Available from [Garmin Connect IQ Developer portal](https://apps.garmin.com/apps/89c9595b-8f78-4647-a703-2103b9f2225b).
+
 
 ## Contents
 
