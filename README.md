@@ -12,7 +12,7 @@ Available from [Garmin Connect IQ Developer portal](https://apps.garmin.com/apps
 ## Contents
 
 * [Swatch time](#swatch-time)
-* [Project structure](#project-structure)
+* [Fonts](#fonts)
 * [Build, test, deploy](#build-test-deploy)
 
 ## Swatch time
@@ -27,37 +27,29 @@ The user may also choose between two symbols for the _beats_: `@` (at) or `.` (d
 The time is specific to the fixed location of Biel, Switerland.
 Thus the value `.500` means noon Biel time, not watch local time.
 
-The watch face uses custom fonts.
-The font presented here is [Ubuntu](https://fonts.google.com/specimen/Ubuntu), available from [Google Fonts](https://fonts.google.com/) as a True Type font (`ttf`).
-It has been converted to a bitmap font (`bmp`, `fnt`) using the open source command-line [`ttf2bmp`](https://github.com/wkusnierczyk/ttf2bmp) converter.
+## Fonts
 
+The Braille Time watch face uses custom fonts:
 
-## Project structure
+* [Ubuntu](https://fonts.google.com/specimen/Ubuntu) for Swatch time (bold) and standard time (regular).
 
-```bash
-SwatchTime
-├── LICENSE                        # MIT license
-├── Makefile                       # Convenience makefile
-├── manifest.xml
-├── monkey.jungle
-├── README.md
-├── resources
-│   ├── drawables
-│   │   ├── drawables.xml
-│   │   └── launcher_icon.svg
-│   ├── fonts
-│   │   ├── fonts.xml              # Font map 
-│   │   └── [ttf, fnt, png fonts]  # Source (ttf) and converted (fnt, png) fonts
-│   ├── layouts
-│   │   └── layout.xml
-│   └── strings
-│       └── strings.xml
-└── source
-    ├── SwatchTime.mc
-    ├── SwatchTimeApp.mc
-    ├── SwatchTimeView.mc
-    └── SwatchTimeSettings.mc
-```
+**Note**  
+To not appear disproportionately big, the At (`@`) symbol is drawn in a slightly smaller font than the Swatch time itself.
+
+The development process was as follows:
+
+* The fonts were downloaded from [Google Fonts](https://fonts.google.com/) as True Type  (`.ttf`) fonts.
+* The fonts were converted to bitmaps as `.fnt` and `.png` pairs using the open source command-line [`ttf2bmp`](https://github.com/wkusnierczyk/ttf2bmp) converter.
+* The font sizes were established to match the Garmin Fenix 7X Solar watch 280x280 pixel screen resolution.
+* The fonts were then scaled proportionally to match other screen sizes available on Garmin watches with round screens using the included [utility script](utils/generate_fonts.py).
+
+The table below lists all font sizes provided for the supported screen resolutions.
+
+| Element       | Font           | 218 | 240 | 260 | 280 | 360 | 390 | 416 | 454 |
+| :------------ | :------------- | --: | --: | --: | --: | --: | --: | --: | --: |
+| Swatch time   | Ubuntu bold    |  62 |  69 |  74 |  80 | 103 | 111 | 119 | 130 |
+| At            | Ubuntu bold    |  47 |  51 |  56 |  60 |  77 |  84 |  89 |  97 |
+| Standard time | Ubuntu regular |  23 |  26 |  28 |  30 |  39 |  42 |  45 |  49 |
 
 ## Build, test, deploy
 
