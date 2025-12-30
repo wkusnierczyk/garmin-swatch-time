@@ -1,24 +1,7 @@
-using Toybox.WatchUi;
-using Toybox.Graphics;
-using Toybox.Lang;
-using Toybox.System;
 using Toybox.Application;
 using Toybox.Application.Properties;
+using Toybox.WatchUi;
 
-const BEATS_SYMBOL_COLOR = Graphics.COLOR_RED;
-const SWATCH_COLOR = Graphics.COLOR_WHITE;
-const STANDARD_TIME_COLOR = Graphics.COLOR_DK_GRAY;
-
-const BEATS_SYMBOL_AT = Application.loadResource(Rez.Strings.At);
-const BEATS_SYMBOL_DOT = Application.loadResource(Rez.Strings.Dot);
-const BEATS_SYMBOL_DEFAULT = BEATS_SYMBOL_AT;
-
-const SWATCH_TIME_FONT = WatchUi.loadResource(Rez.Fonts.SwatchTimeFont);
-const AT_FONT = WatchUi.loadResource(Rez.Fonts.AtFont);
-const STANDARD_TIME_FONT = WatchUi.loadResource(Rez.Fonts.StandardTimeFont);
-const BEATS_FONT_DEFAULT = AT_FONT;
-
-const STANDARD_TIME_YOFFSET = 40;
 
 class SwatchTimeView extends WatchUi.WatchFace {
 
@@ -70,7 +53,9 @@ class SwatchTimeView extends WatchUi.WatchFace {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var beatsSymbolWidth = dc.getTextWidthInPixels(beatsSymbol, beatsFont);
-        var swatchTimeWidth = dc.getTextWidthInPixels(swatchTime, SWATCH_TIME_FONT);
+        var swatchTimeDimensions = dc.getTextDimensions(swatchTime, SWATCH_TIME_FONT);
+        var swatchTimeWidth = swatchTimeDimensions[0];
+        var swatchTimeHeight = swatchTimeDimensions[1];
         var totalWidth = beatsSymbolWidth + swatchTimeWidth;
         
         var currentX = (width - totalWidth) / 2;
@@ -97,25 +82,17 @@ class SwatchTimeView extends WatchUi.WatchFace {
                 clockTime.sec.format("%02d")
             ]);
 
+            var standardTimeY = centerY + swatchTimeHeight/2;
             dc.setColor(STANDARD_TIME_COLOR, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
                 width / 2, 
-                (height / 2) + STANDARD_TIME_YOFFSET, 
+                standardTimeY,
                 STANDARD_TIME_FONT,
                 standardTime, 
                 Graphics.TEXT_JUSTIFY_CENTER
             );
         }
 
-    }
-
-    function onHide() {
-    }
-
-    function onExitSleep() {
-    }
-
-    function onEnterSleep() {
     }
 
 }

@@ -19,6 +19,7 @@ test_build-settings.json
 # Build artifacts
 *.prg
 *.prg.*
+fonts.md
 
 # IDE/Editor settings
 .settings/
