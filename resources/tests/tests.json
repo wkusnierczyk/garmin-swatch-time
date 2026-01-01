@@ -1,0 +1,17 @@
+[
+    {
+        "expected": "000",
+        "input": "1766703600",
+        "name": "Midnight CET"
+    },
+    {
+        "expected": "500",
+        "input": "1766746800",
+        "name": "Noon CET"
+    },
+    {
+        "expected": "999",
+        "input": "1766789914",
+        "name": "Beat to midnight CET"
+    }
+]
