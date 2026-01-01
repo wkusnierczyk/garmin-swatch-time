@@ -102,12 +102,8 @@ The table below lists all font sizes provided for the supported screen resolutio
 |  260 x 260 | round        | Beatseconds   | Ubuntu regular |   56 |
 |  260 x 260 | round        | Standard time | Ubuntu regular |   28 |
 |  280 x 280 | round        | At            | Ubuntu bold    |   60 |
-|  280 x 280 | round        | At            | Ubuntu bold    |   60 |
-|  280 x 280 | round        | Beats         | Ubuntu bold    |   80 |
 |  280 x 280 | round        | Beats         | Ubuntu bold    |   80 |
 |  280 x 280 | round        | Beatseconds   | Ubuntu regular |   60 |
-|  280 x 280 | round        | Beatseconds   | Ubuntu regular |   60 |
-|  280 x 280 | round        | Standard time | Ubuntu regular |   30 |
 |  280 x 280 | round        | Standard time | Ubuntu regular |   30 |
 |  320 x 360 | rectangle    | At            | Ubuntu bold    |   69 |
 |  320 x 360 | rectangle    | Beats         | Ubuntu bold    |   91 |
