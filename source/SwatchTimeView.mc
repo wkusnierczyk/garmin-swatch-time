@@ -24,8 +24,9 @@ class SwatchTimeView extends WatchUi.WatchFace {
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
         dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 
-        var currentMoment = Time.now();
-        var swatchTime = SwatchTime.getSwatchTime(currentMoment);
+        var now = Time.now();
+        var swatchTime = new SwatchTime(now);
+        var swatchBeats = swatchTime.beats();
         var clockTime = System.getClockTime();
 
         var beatsSymbolMode;
@@ -53,7 +54,7 @@ class SwatchTimeView extends WatchUi.WatchFace {
         var width = dc.getWidth();
         var height = dc.getHeight();
         var beatsSymbolWidth = dc.getTextWidthInPixels(beatsSymbol, beatsFont);
-        var swatchTimeDimensions = dc.getTextDimensions(swatchTime, SWATCH_TIME_FONT);
+        var swatchTimeDimensions = dc.getTextDimensions(swatchBeats, SWATCH_TIME_FONT);
         var swatchTimeWidth = swatchTimeDimensions[0];
         var swatchTimeHeight = swatchTimeDimensions[1];
         var totalWidth = beatsSymbolWidth + swatchTimeWidth;
@@ -65,8 +66,8 @@ class SwatchTimeView extends WatchUi.WatchFace {
         dc.drawText(currentX, centerY, beatsFont, beatsSymbol, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         currentX += beatsSymbolWidth;
 
-        dc.setColor(SWATCH_COLOR, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(currentX, centerY, SWATCH_TIME_FONT, swatchTime, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        dc.setColor(BEATS_COLOR, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(currentX, centerY, SWATCH_TIME_FONT, swatchBeats, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
 
         var showStandardTime;
         try {

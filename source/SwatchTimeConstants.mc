@@ -16,7 +16,8 @@ const BEATS_SYMBOL_MODE_DOT = 1;
 const BEATS_SYMBOL_MODE_DEFAULT = BEATS_SYMBOL_MODE_AT;
 
 const BEATS_SYMBOL_COLOR = Graphics.COLOR_RED;
-const SWATCH_COLOR = Graphics.COLOR_WHITE;
+const BEATS_COLOR = Graphics.COLOR_WHITE;
+const BEATSECONDS_COLOR = Graphics.COLOR_LT_GRAY;
 const STANDARD_TIME_COLOR = Graphics.COLOR_DK_GRAY;
 
 const BEATS_SYMBOL_AT = Application.loadResource(Rez.Strings.At);
