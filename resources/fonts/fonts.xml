@@ -1,38 +1,14 @@
 <resources>
 
     <fonts>
-        <font id="SwatchTimeFont" filename="Ubuntu-Bold-80.fnt" antialias="true" />
+        <font id="BeatsFont" filename="Ubuntu-Bold-80.fnt" antialias="true" />
+        <font id="BeatsecondsFont" filename="Ubuntu-Regular-60.fnt" antialias="true" />
         <font id="AtFont" filename="Ubuntu-Bold-60.fnt" antialias="true" />
         <font id="StandardTimeFont" filename="Ubuntu-Regular-30.fnt" antialias="true" />
     </fonts>
 
-    <jsonData id="FontCharsets">[
-        {
-            "fontId": "SwatchTimeFont",
-            "fontCharset": "0123456789.@"
-        },
-        {
-            "fontId": "AtFont",
-            "fontCharset": "@."
-        },
-        {
-            "fontId": "StandardTimeFont",
-            "fontCharset": "0123456789: "
-        }
-    ]</jsonData>
+    <jsonData id="FontCharsets" filename="charsets.json" />
 
-    <jsonData id="ScreenDiameters">{
-        "referenceDiameter": 280,
-        "targetDiameters": [
-            218, 
-            240, 
-            260, 
-            280, 
-            360, 
-            390, 
-            416, 
-            454
-        ]
-    }</jsonData>
+    <jsonData id="ScreenResolutions" filename="resolutions.json" />
 
 </resources>
