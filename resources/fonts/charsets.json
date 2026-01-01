@@ -1,0 +1,18 @@
+[
+    {
+        "fontCharset": "0123456789.",
+        "fontId": "BeatsFont"
+    },
+    {
+        "fontCharset": "0123456789",
+        "fontId": "BeatsecondsFont"
+    },
+    {
+        "fontCharset": "@",
+        "fontId": "AtFont"
+    },
+    {
+        "fontCharset": "0123456789: ",
+        "fontId": "StandardTimeFont"
+    }
+]

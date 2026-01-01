@@ -9,22 +9,27 @@ const STANDARD_TIME_LABEL = Application.loadResource(Rez.Strings.ShowStandardTim
 const STANDARD_TIME_PROPERTY = "ShowStandardTime";
 const STANDARD_TIME_MODE_DEFAULT = false;
 
-const BEATS_SYMBOL_LABEL = Application.loadResource(Rez.Strings.BeatsSymbolTitle);
-const BEATS_SYMBOL_PROPERTY = "BeatsSymbol";
-const BEATS_SYMBOL_MODE_AT = 0;
-const BEATS_SYMBOL_MODE_DOT = 1;
-const BEATS_SYMBOL_MODE_DEFAULT = BEATS_SYMBOL_MODE_AT;
+const BEATSECONDS_LABEL = Application.loadResource(Rez.Strings.ShowBeatsecondsTitle);
+const BEATSECONDS_PROPERTY = "ShowBeatseconds";
+const BEATSECONDS_MODE_DEFAULT = false;
 
-const BEATS_SYMBOL_COLOR = Graphics.COLOR_RED;
-const SWATCH_COLOR = Graphics.COLOR_WHITE;
+const SYMBOL_LABEL = Application.loadResource(Rez.Strings.SymbolTitle);
+const SYMBOL_PROPERTY = "BeatsSymbol";
+const SYMBOL_MODE_AT = 0;
+const SYMBOL_MODE_DOT = 1;
+const SYMBOL_MODE_DEFAULT = SYMBOL_MODE_DOT;
+
+const SYMBOL_COLOR = Graphics.COLOR_RED;
+const BEATS_COLOR = Graphics.COLOR_WHITE;
+const BEATSECONDS_COLOR = Graphics.COLOR_LT_GRAY;
 const STANDARD_TIME_COLOR = Graphics.COLOR_DK_GRAY;
 
-const BEATS_SYMBOL_AT = Application.loadResource(Rez.Strings.At);
-const BEATS_SYMBOL_DOT = Application.loadResource(Rez.Strings.Dot);
-const BEATS_SYMBOL_DEFAULT = BEATS_SYMBOL_AT;
+const SYMBOL_AT = Application.loadResource(Rez.Strings.At);
+const SYMBOL_DOT = Application.loadResource(Rez.Strings.Dot);
+const SYMBOL_DEFAULT = SYMBOL_AT;
 
-const SWATCH_TIME_FONT = Application.loadResource(Rez.Fonts.SwatchTimeFont);
+const BEATS_FONT = Application.loadResource(Rez.Fonts.BeatsFont);
+const BEATSECONDS_FONT = Application.loadResource(Rez.Fonts.BeatsecondsFont);
 const AT_FONT = Application.loadResource(Rez.Fonts.AtFont);
 const STANDARD_TIME_FONT = Application.loadResource(Rez.Fonts.StandardTimeFont);
-const BEATS_FONT_DEFAULT = AT_FONT;
-
+const SYMBOL_FONT_DEFAULT = AT_FONT;

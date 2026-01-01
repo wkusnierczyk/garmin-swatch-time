@@ -14,66 +14,76 @@ class SwatchTimeView extends WatchUi.WatchFace {
         setLayout(Rez.Layouts.WatchFace(dc));
     }
 
-    // Called when this View is brought to the foreground
-    function onShow() {
-    }
-
     // Update the view
     function onUpdate(dc) {
 
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
         dc.fillRectangle(0, 0, dc.getWidth(), dc.getHeight());
 
-        var currentMoment = Time.now();
-        var swatchTime = SwatchTime.getSwatchTime(currentMoment);
         var clockTime = System.getClockTime();
+        var swatchTime = new SwatchTime(Time.now());
 
-        var beatsSymbolMode;
-        try {
-            beatsSymbolMode = Properties.getValue(BEATS_SYMBOL_PROPERTY);
-            if (beatsSymbolMode == null) {
-                beatsSymbolMode = BEATS_SYMBOL_MODE_DEFAULT;
-            }
-        } catch (ex) {
-            beatsSymbolMode = BEATS_SYMBOL_MODE_DEFAULT;
-        }
+        var beats = swatchTime.beats();
+        var beatseconds = swatchTime.bitseconds();
 
-        var beatsSymbol = BEATS_SYMBOL_DEFAULT;
-        var beatsFont = BEATS_FONT_DEFAULT;
-        switch (beatsSymbolMode) {
-            case BEATS_SYMBOL_MODE_AT:
-                beatsSymbol = BEATS_SYMBOL_AT;
-                beatsFont = AT_FONT;
+        var symbolMode = PropertyUtils.getPropertyElseDefault(SYMBOL_PROPERTY, SYMBOL_MODE_DEFAULT);
+        var symbol = SYMBOL_DEFAULT;
+        var symbolFont = SYMBOL_FONT_DEFAULT;
+        switch (symbolMode) {
+            case SYMBOL_MODE_AT:
+                symbol = SYMBOL_AT;
+                symbolFont = AT_FONT;
                 break;
-            case BEATS_SYMBOL_MODE_DOT:
-                beatsSymbol = BEATS_SYMBOL_DOT;
-                beatsFont = SWATCH_TIME_FONT;
+            case SYMBOL_MODE_DOT:
+                symbol = SYMBOL_DOT;
+                symbolFont = BEATS_FONT;
         }
+
+        var beatsecondsEnabled = PropertyUtils.getPropertyElseDefault(BEATSECONDS_PROPERTY, BEATSECONDS_MODE_DEFAULT);
 
         var width = dc.getWidth();
         var height = dc.getHeight();
-        var beatsSymbolWidth = dc.getTextWidthInPixels(beatsSymbol, beatsFont);
-        var swatchTimeDimensions = dc.getTextDimensions(swatchTime, SWATCH_TIME_FONT);
-        var swatchTimeWidth = swatchTimeDimensions[0];
-        var swatchTimeHeight = swatchTimeDimensions[1];
-        var totalWidth = beatsSymbolWidth + swatchTimeWidth;
+
+        var symbolDimensions = dc.getTextDimensions(symbol, symbolFont);
+        var symbolWidth = symbolDimensions[0];
+        var symbolHeight = symbolDimensions[1];
+
+        var beatsDimensions = dc.getTextDimensions(beats, BEATS_FONT);
+        var beatsWidth = beatsDimensions[0];
+        var beatsHeight = beatsDimensions[1];
+
+        var beatsecondsDimensions = dc.getTextDimensions(beatseconds, BEATSECONDS_FONT);
+        var beatsecondsWidth = beatsecondsDimensions[0];
+        var beatsecondsHeight = beatsecondsDimensions[1];
+
+        var totalWidth = beatsecondsEnabled ? 
+                         symbolWidth + beatsWidth + beatsecondsWidth :
+                         symbolWidth + beatsWidth;
         
         var currentX = (width - totalWidth) / 2;
         var centerY = height / 2;
+        var baseY = 0.95 * centerY;
 
-        dc.setColor(BEATS_SYMBOL_COLOR, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(currentX, centerY, beatsFont, beatsSymbol, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-        currentX += beatsSymbolWidth;
+        dc.setColor(SYMBOL_COLOR, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(currentX, baseY, symbolFont, symbol, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        // var symbolY = bottomY - symbolHeight / 2;
+        // dc.drawText(currentX, symbolY, symbolFont, symbol, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
 
-        dc.setColor(SWATCH_COLOR, Graphics.COLOR_TRANSPARENT);
-        dc.drawText(currentX, centerY, SWATCH_TIME_FONT, swatchTime, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
-
-        var showStandardTime;
-        try {
-            showStandardTime = Properties.getValue(STANDARD_TIME_PROPERTY);
-        } catch (ex) {
-            showStandardTime = STANDARD_TIME_MODE_DEFAULT;
+        currentX += symbolWidth;
+        dc.setColor(BEATS_COLOR, Graphics.COLOR_TRANSPARENT);
+        dc.drawText(currentX, baseY, BEATS_FONT, beats, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        // var beatsY = bottomY - beatsHeight / 2;
+        // dc.drawText(currentX, beatsY, BEATS_FONT, beats, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+        
+        if (beatsecondsEnabled) {
+            currentX += beatsWidth;
+            dc.setColor(BEATSECONDS_COLOR, Graphics.COLOR_TRANSPARENT);
+            // dc.drawText(currentX, centerY, BEATSECONDS_FONT, beatseconds, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+            var beatsecondsY = baseY + (beatsHeight - beatsecondsHeight) / 3;
+            dc.drawText(currentX, beatsecondsY, BEATSECONDS_FONT, beatseconds, Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
         }
+
+        var showStandardTime = PropertyUtils.getPropertyElseDefault(STANDARD_TIME_PROPERTY, STANDARD_TIME_MODE_DEFAULT);
 
         if (showStandardTime) {
             var standardTime = Lang.format("$1$:$2$:$3$", [
@@ -82,7 +92,7 @@ class SwatchTimeView extends WatchUi.WatchFace {
                 clockTime.sec.format("%02d")
             ]);
 
-            var standardTimeY = centerY + swatchTimeHeight/2;
+            var standardTimeY = baseY + beatsHeight/2;
             dc.setColor(STANDARD_TIME_COLOR, Graphics.COLOR_TRANSPARENT);
             dc.drawText(
                 width / 2, 

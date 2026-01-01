@@ -4,10 +4,14 @@
         <settingConfig type="boolean" />
     </setting>
 
-    <setting propertyKey="@Properties.BeatsSymbol" title="@Strings.BeatsSymbolTitle">
+    <setting propertyKey="@Properties.ShowBeatseconds" title="@Strings.ShowBeatsecondsTitle">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.ShowBeatsSymbol" title="@Strings.SymbolTitle">
         <settingConfig type="list">
-            <listEntry value="0">@Strings.BeatsSymbolOptionAt</listEntry>
-            <listEntry value="1">@Strings.BeatsSymbolOptionDot</listEntry>
+            <listEntry value="0">@Strings.SymbolOptionAt</listEntry>
+            <listEntry value="1">@Strings.SymbolOptionDot</listEntry>
         </settingConfig>
     </setting>
 

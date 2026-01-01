@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <fonts>
+        <font id="BeatsFont" filename="Ubuntu-Bold-50.fnt" antialias="true" />
+        <font id="BeatsecondsFont" filename="Ubuntu-Regular-38.fnt" antialias="true" />
+        <font id="AtFont" filename="Ubuntu-Bold-38.fnt" antialias="true" />
+        <font id="StandardTimeFont" filename="Ubuntu-Regular-19.fnt" antialias="true" />
+    </fonts>
+</resources>

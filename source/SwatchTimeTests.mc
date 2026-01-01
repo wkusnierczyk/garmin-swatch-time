@@ -22,7 +22,8 @@ function testSwatchTime(logger) {
         var name = testCase[TEST_NAME] as String;
         var input = new Time.Moment(testCase[TEST_INPUT].toNumber());
         var expected = testCase[TEST_EXPECTED] as String;
-        var beats = SwatchTime.getSwatchTime(input) as String;
+        // var beats = SwatchTime.getSwatchTime(input) as String;
+        var beats = new SwatchTime(input).beats();
         if (!beats.equals(expected)) {
             var message = Lang.format(SWATCH_TIME_TEST_ERROR_TEMPLATE, [name, expected, beats]);
             logger.error(message);
