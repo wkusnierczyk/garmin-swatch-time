@@ -1,21 +1,15 @@
 using Toybox.Application.Properties;
 
-import Toybox.Lang;
-
 
 module PropertyUtils {
 
-    function getPropertyElseDefault(propertyName as String, defaultValue) {
-        var value;
+    function getPropertyElseDefault(propertyName, defaultValue) {
         try {
-            value = Properties.getValue(propertyName);
-            if (value == null) {
-                value = defaultValue;
-            }
-        } catch (e) {
-            value = defaultValue;
+            var value = Properties.getValue(propertyName);
+            return (value != null) ? value : defaultValue;
+        } catch (_) {
+            return defaultValue;
         }
-        return value;
     }
 
 }
