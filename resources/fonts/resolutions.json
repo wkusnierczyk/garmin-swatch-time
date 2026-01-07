@@ -89,14 +89,14 @@
                 215,
                 180
             ],
-            "shape": "semi-round"
+            "shape": "semiround"
         },
         {
             "resolution": [
                 176,
                 176
             ],
-            "shape": "semi-octagon"
+            "shape": "semioctagon"
         }
     ]
 }
